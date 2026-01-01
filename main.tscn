@@ -1,14 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://40fqw8fdm1j3"]
+[gd_scene load_steps=5 format=3 uid="uid://40fqw8fdm1j3"]
 
-[ext_resource type="Script" uid="uid://yj3vlkurwqir" path="res://network_manager.gd" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://d3b8oy6ht6ne2" path="res://networkUI.gd" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://bafanrvhgunmk" path="res://player.tscn" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://yj3vlkurwqir" path="res://networking/network_manager.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://d3b8oy6ht6ne2" path="res://networking/networkUI.gd" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://cjwrc2ajdvwth" path="res://noray_component.gd" id="2_1bvp3"]
+[ext_resource type="Script" uid="uid://chwylthbo1lye" path="res://chatUi/chat_ui.gd" id="3_h2yge"]
 
 [node name="main" type="Node3D"]
 
 [node name="NetworkManager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("1_ig7tw")
-player_scene = ExtResource("2_h2yge")
+
+[node name="norayComponent" type="Node" parent="NetworkManager"]
+script = ExtResource("2_1bvp3")
 
 [node name="world" type="Node3D" parent="."]
 
@@ -25,9 +29,47 @@ offset_bottom = 40.0
 layout_mode = 2
 text = "host"
 
+[node name="copyPID" type="Button" parent="ui/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "copy code"
+
 [node name="join" type="Button" parent="ui/VBoxContainer"]
 layout_mode = 2
 text = "join"
 
+[node name="code" type="LineEdit" parent="ui/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="chatUI" type="PanelContainer" parent="ui"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -195.0
+offset_right = 223.0
+grow_vertical = 0
+script = ExtResource("3_h2yge")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/chatUI"]
+layout_mode = 2
+
+[node name="chatLog" type="RichTextLabel" parent="ui/chatUI/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+
+[node name="messageinput" type="LineEdit" parent="ui/chatUI/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+clear_button_enabled = true
+
+[node name="send" type="Button" parent="ui/chatUI/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Send"
+
 [connection signal="pressed" from="ui/VBoxContainer/host" to="ui" method="_on_host_pressed"]
+[connection signal="pressed" from="ui/VBoxContainer/copyPID" to="ui" method="_on_copy_pid_pressed"]
 [connection signal="pressed" from="ui/VBoxContainer/join" to="ui" method="_on_join_pressed"]
