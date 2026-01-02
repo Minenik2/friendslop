@@ -32,7 +32,8 @@ func _send_message():
 # RECEIVE MESSAGE (RPC)
 # ===============================
 
-@rpc("any_peer", "reliable")
+# call local will be also called on P2P (when client is also host)
+@rpc("any_peer", "call_local", "reliable")
 func receive_message(sender_id : int, text : String):
 	var playerName := "You" if sender_id == multiplayer.get_unique_id() else "Peer %d" % sender_id
 	chat_log.append_text("%s: %s\n" % [playerName, text])

@@ -1,6 +1,5 @@
 extends CanvasLayer
-@onready var network_manager: NetworkManager = %NetworkManager
-@onready var noray_component: norayNetworkComponent = $"../NetworkManager/norayComponent"
+@onready var noray_component: norayNetworkComponent = NetworkManager.returnNorayComponent()
 
 
 # code from host to connect
@@ -11,10 +10,20 @@ func _ready():
 	%copyPID.disabled = true
 
 func _on_host_pressed() -> void:
-	network_manager.start_host()
+	NetworkManager.start_host()
+	%mainMenuALL.hide()
+	%copyPID.show()
+	HudUi.show()
 
+func _on_connect_pressed() -> void:
+	NetworkManager.join_game(%code.text)
+	%mainMenuALL.hide()
+	HudUi.show()
+
+# show the connect to host menu
 func _on_join_pressed() -> void:
-	network_manager.join_game(%code.text)
+	%mainmenu.hide()
+	%connectToJoin.show()
 
 func _on_pid_created(pid: String):
 	current_pid = pid
@@ -26,3 +35,8 @@ func _on_copy_pid_pressed() -> void:
 	
 	DisplayServer.clipboard_set(current_pid)
 	print("Copied PID to clipboard:", current_pid)
+
+# back from connect to host menu
+func _on_back_pressed() -> void:
+	%connectToJoin.hide()
+	%mainmenu.show()

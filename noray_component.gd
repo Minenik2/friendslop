@@ -1,7 +1,7 @@
 extends Node
 class_name norayNetworkComponent
 
-@onready var network_manager: NetworkManager = %NetworkManager
+@onready var network_manager = NetworkManager
 
 signal network_server_disconnected
 signal createdOID(oid: String)

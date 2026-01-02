@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl7m0qmgxoar3"]
+
+[ext_resource type="Script" uid="uid://yj3vlkurwqir" path="res://networking/network_manager.gd" id="1_ajm06"]
+[ext_resource type="Script" uid="uid://cjwrc2ajdvwth" path="res://noray_component.gd" id="2_d4gkk"]
+
+[node name="NetworkManager" type="Node"]
+script = ExtResource("1_ajm06")
+
+[node name="norayComponent" type="Node" parent="."]
+script = ExtResource("2_d4gkk")

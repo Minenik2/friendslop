@@ -1,5 +1,4 @@
 extends Node
-class_name NetworkManager
 
 @onready var noray_component: norayNetworkComponent = $norayComponent
 
@@ -26,3 +25,6 @@ func join_game(host_oid : String):
 	print("Joining host OID:", host_oid)
 	noray_component.setup_network()
 	noray_component.create_client_peer()
+
+func returnNorayComponent():
+	return $norayComponent

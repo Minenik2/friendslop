@@ -19,12 +19,26 @@ config/icon="res://icon.svg"
 
 Noray="*res://addons/netfox.noray/noray.gd"
 PacketHandshake="*res://addons/netfox.noray/packet-handshake.gd"
+MainMenu="*res://ui/menu/menu.tscn"
+NetworkManager="*res://networking/network_manager.tscn"
+HudUi="*res://ui/hud/hudUi.tscn"
+
+[display]
+
+window/size/viewport_width=840
+window/size/viewport_height=680
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/netfox.internals/plugin.cfg", "res://addons/netfox.noray/plugin.cfg")
 
+[gui]
+
+theme/custom="uid://b0yv7sg6b2cgc"
+theme/custom_font="uid://crbboutenq4so"
+
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
