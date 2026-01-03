@@ -1,13 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://40fqw8fdm1j3"]
+[gd_scene load_steps=8 format=3 uid="uid://40fqw8fdm1j3"]
 
 [ext_resource type="Script" uid="uid://dymouvp3ikql3" path="res://player/player_spawner.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bafanrvhgunmk" path="res://player/player.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://khbyt38hlpcl" path="res://killzone/killzone.tscn" id="3_h2yge"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7dm0k"]
 size = Vector2(20, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
 size = Vector3(20, 0.477, 20)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1bvp3"]
 
 [sub_resource type="Environment" id="Environment_0xm2m"]
 fog_enabled = true
@@ -31,9 +34,18 @@ mesh = SubResource("PlaneMesh_7dm0k")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017028809, -0.2612915, 0.00289917)
 shape = SubResource("BoxShape3D_0xm2m")
 
+[node name="killzone" parent="world" instance=ExtResource("3_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.231013, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="world/killzone"]
+shape = SubResource("WorldBoundaryShape3D_1bvp3")
+debug_color = Color(0.68376917, 0.23771408, 0.25943685, 0.41960785)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0xm2m")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://bafanrvhgunmk")
 spawn_path = NodePath("../world/playerSpawner")
+
+[connection signal="respawn" from="world/killzone" to="world/playerSpawner" method="_on_killzone_respawn"]

@@ -1,9 +1,9 @@
 extends CanvasLayer
 
-@onready var sensitivity_slider: HSlider = $VBoxContainer2/VBoxContainer/SensitivitySlider
-@onready var volume_slider: HSlider = $VBoxContainer2/VBoxContainer/VolumeSlider
-@onready var sensitivity_label: Label = $VBoxContainer2/VBoxContainer/SensitivityLabel
-@onready var volume_label: Label = $VBoxContainer2/VBoxContainer/VolumeLabel
+@onready var sensitivity_slider: HSlider = %SensitivitySlider
+@onready var volume_slider: HSlider = %VolumeSlider
+@onready var sensitivity_label: Label = %SensitivityLabel
+@onready var volume_label: Label = %VolumeLabel
 
 var menu_visible := false
 

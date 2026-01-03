@@ -1,3 +1,77 @@
-[gd_resource type="Theme" format=3 uid="uid://b0yv7sg6b2cgc"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://b0yv7sg6b2cgc"]
+
+[ext_resource type="Texture2D" uid="uid://egngy4lh52ku" path="res://art/ui/uiBox.png" id="1_qdnbu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qdnbu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qdnbu"]
+texture = ExtResource("1_qdnbu")
+texture_margin_left = 11.0
+texture_margin_top = 11.0
+texture_margin_right = 11.0
+texture_margin_bottom = 11.0
+modulate_color = Color(0.3794832, 0.43107948, 0.513558, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rm4fy"]
+texture = ExtResource("1_qdnbu")
+texture_margin_left = 11.0
+texture_margin_top = 11.0
+texture_margin_right = 11.0
+texture_margin_bottom = 11.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f8tkf"]
+texture = ExtResource("1_qdnbu")
+texture_margin_left = 11.0
+texture_margin_top = 11.0
+texture_margin_right = 11.0
+texture_margin_bottom = 11.0
+modulate_color = Color(0.99999946, 0.9901772, 0.49890816, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8tkf"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.584314, 0.0117647, 0.109804, 1)
+border_width_left = 2
+border_color = Color(0.941176, 0.964706, 0.941176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpmg5"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.584314, 0.0117647, 0.109804, 1)
+border_width_left = 2
+border_color = Color(0.941176, 0.964706, 0.941176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_asane"]
+bg_color = Color(0, 0, 0, 1)
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.941176, 0.964706, 0.941176, 1)
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gpmg5"]
+texture = ExtResource("1_qdnbu")
+texture_margin_left = 11.0
+texture_margin_top = 11.0
+texture_margin_right = 11.0
+texture_margin_bottom = 11.0
+modulate_color = Color(0.99999946, 0.9901772, 0.49890816, 1)
 
 [resource]
+Button/styles/focus = SubResource("StyleBoxEmpty_qdnbu")
+Button/styles/hover = SubResource("StyleBoxTexture_qdnbu")
+Button/styles/normal = SubResource("StyleBoxTexture_rm4fy")
+Button/styles/pressed = SubResource("StyleBoxTexture_f8tkf")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_f8tkf")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_gpmg5")
+HSlider/styles/slider = SubResource("StyleBoxFlat_asane")
+LineEdit/styles/focus = SubResource("StyleBoxTexture_gpmg5")
+LineEdit/styles/normal = SubResource("StyleBoxTexture_rm4fy")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_rm4fy")
+RichTextLabel/styles/normal = SubResource("StyleBoxTexture_rm4fy")
+TextEdit/styles/normal = SubResource("StyleBoxTexture_rm4fy")

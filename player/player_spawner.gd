@@ -34,3 +34,7 @@ func _on_peer_disconnected(peer_id : int):
 	if players.has(peer_id):
 		players[peer_id].queue_free()
 		players.erase(peer_id)
+
+
+func _on_killzone_respawn(body: playerMain) -> void:
+	body.position = position

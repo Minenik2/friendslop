@@ -13,6 +13,7 @@ config_version=5
 config/name="friendslop"
 run/main_scene="uid://40fqw8fdm1j3"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/image="uid://bgw2vjlreap5k"
 config/icon="res://icon.svg"
 
 [autoload]
@@ -33,10 +34,22 @@ DeathScreen="*res://ui/deathScreen/death_screen.tscn"
 
 window/size/viewport_width=840
 window/size/viewport_height=680
+mouse_cursor/custom_image="uid://msh6kygj1g13"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/netfox.internals/plugin.cfg", "res://addons/netfox.noray/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://art/": "red",
+"res://audio/": "red",
+"res://killzone/": "purple",
+"res://networking/": "purple",
+"res://player/": "purple",
+"res://ui/": "green"
+}
 
 [gui]
 
@@ -82,6 +95,11 @@ chat={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="world"
+3d_physics/layer_2="player"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
@@ -92,3 +110,5 @@ chat={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/decals/filter=0
+textures/light_projectors/filter=0
