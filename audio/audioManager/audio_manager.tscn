@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://bhj4fiin8wyf0" path="res://audio/audio_steps.wav" id="3_6jt24"]
 
 [node name="AudioManager" type="AudioStreamPlayer" node_paths=PackedStringArray("music_player")]
-volume_db = -60.0
+volume_db = -40.0
 script = ExtResource("1_vwd0j")
 music_player = NodePath(".")
 songs = Array[AudioStream]([ExtResource("2_6jt24")])
