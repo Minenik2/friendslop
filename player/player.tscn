@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bafanrvhgunmk"]
+[gd_scene load_steps=8 format=3 uid="uid://bafanrvhgunmk"]
 
 [ext_resource type="Script" uid="uid://dvvsaq2veqypu" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="AudioStream" uid="uid://bhj4fiin8wyf0" path="res://audio/audio_steps.wav" id="2_rkbax"]
 [ext_resource type="Script" uid="uid://bupwufohhkbuq" path="res://player/footsteps_component.gd" id="3_g1dw6"]
+[ext_resource type="Script" uid="uid://bvbenfc1wyqg6" path="res://player/headbob_component.gd" id="4_yw30f"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oul6g"]
 properties/0/path = NodePath(".:position")
@@ -16,7 +17,7 @@ height = 2.5
 
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
 script = ExtResource("1_oul6g")
-camera = NodePath("Camera3D")
+camera = NodePath("camerapivot/Camera3D")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_oul6g")
@@ -24,7 +25,9 @@ replication_config = SubResource("SceneReplicationConfig_oul6g")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_sh265")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="camerapivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="camerapivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75301945, 0)
 current = true
 
@@ -45,3 +48,7 @@ pitch_scale = 0.9
 stream = ExtResource("2_rkbax")
 volume_db = -30.0
 pitch_scale = 0.8
+
+[node name="headbobComponent" type="Node3D" parent="." node_paths=PackedStringArray("camera_pivot")]
+script = ExtResource("4_yw30f")
+camera_pivot = NodePath("../camerapivot")

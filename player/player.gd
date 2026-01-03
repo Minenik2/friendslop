@@ -1,14 +1,24 @@
 extends CharacterBody3D
+class_name playerMain
 
 @export var speed := 5.0
 @export var jump_velocity: float = 7
 @export var camera: Camera3D
+
+enum STATE {
+	IDLE,
+	WALKING,
+	JUMP,
+	FALL
+}
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var pitch: float = 0.0  # Up/down rotation
 var player_id: int # for multiplayer
 
 var direction: Vector3
+
+var active_state := STATE.IDLE
 	
 func _enter_tree() -> void:
 	
@@ -36,24 +46,53 @@ func _physics_process(delta):
 	if not is_multiplayer_authority():
 		return
 	
-	# Apply gravity
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-
 	var input_dir = Input.get_vector("left", "right", "up", "down")
 	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	if direction != Vector3.ZERO:
-		velocity.x = direction.x * speed
-		velocity.z = direction.z * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		velocity.z = move_toward(velocity.z, 0, speed)
+	match active_state:
+		STATE.IDLE:
+			# sliding
+			velocity.x = move_toward(velocity.x, 0, speed)
+			velocity.z = move_toward(velocity.z, 0, speed)
+			if direction != Vector3.ZERO:
+				switch_state(STATE.WALKING) # To WALK
+			if not is_on_floor():
+				switch_state(STATE.FALL) # To FALL
+			if Input.is_action_just_pressed("jump"):
+				switch_state(STATE.JUMP) # To JUMP
+		STATE.WALKING:
+			velocity.x = direction.x * speed
+			velocity.z = direction.z * speed
+			if direction == Vector3.ZERO:
+				switch_state(STATE.IDLE) # To IDLE 
+			if not is_on_floor():
+				switch_state(STATE.FALL) # To FALL
+			if Input.is_action_just_pressed("jump"):
+				switch_state(STATE.JUMP) # To JUMP
+		STATE.JUMP:
+			velocity.y = jump_velocity
+			switch_state(STATE.FALL)
+		STATE.FALL:
+			velocity.y -= gravity * delta
+			if direction != Vector3.ZERO:
+				velocity.x = direction.x * speed
+				velocity.z = direction.z * speed
+			
+			if is_on_floor():
+				switch_state(STATE.IDLE) # To IDLE 
 	
-	# Jump
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_velocity
-
-
-	self.velocity = velocity
+	
 	move_and_slide()
+
+func switch_state(to_state: STATE) -> void:
+	active_state = to_state
+	
+	match  active_state:
+		STATE.IDLE:
+			pass
+		STATE.JUMP:
+			pass
+		STATE.WALKING:
+			pass
+		STATE.FALL:
+			pass
