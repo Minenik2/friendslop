@@ -1,6 +1,7 @@
 extends CanvasLayer
 @onready var noray_component: norayNetworkComponent = NetworkManager.returnNorayComponent()
 
+signal hostPressed()
 
 # code from host to connect
 var current_pid : String = ""
@@ -14,6 +15,7 @@ func _on_host_pressed() -> void:
 	%mainMenuALL.hide()
 	%copyPID.show()
 	HudUi.show()
+	hostPressed.emit()
 
 func _on_connect_pressed() -> void:
 	NetworkManager.join_game(%code.text)

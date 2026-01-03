@@ -1,9 +1,39 @@
-[gd_scene format=3 uid="uid://40fqw8fdm1j3"]
+[gd_scene load_steps=6 format=3 uid="uid://40fqw8fdm1j3"]
+
+[ext_resource type="Script" uid="uid://dymouvp3ikql3" path="res://player/player_spawner.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://bafanrvhgunmk" path="res://player/player.tscn" id="2_h2yge"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7dm0k"]
+size = Vector2(10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+size = Vector3(10.838867, 0.5449219, 10.313232)
+
+[sub_resource type="Environment" id="Environment_0xm2m"]
+fog_enabled = true
+fog_light_color = Color(0.44705883, 0.56078434, 0.50980395, 1)
 
 [node name="main" type="Node3D"]
 
 [node name="world" type="Node3D" parent="."]
 
-[node name="players" type="Node3D" parent="world"]
+[node name="playerSpawner" type="Node3D" parent="world"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1102735, 0)
+script = ExtResource("1_0xm2m")
+player_scene = ExtResource("2_h2yge")
 
-[node name="ui" type="CanvasLayer" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="world"]
+mesh = SubResource("PlaneMesh_7dm0k")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="world/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="world/MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35986328, -0.22753906, 0.008911133)
+shape = SubResource("BoxShape3D_0xm2m")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0xm2m")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://bafanrvhgunmk")
+spawn_path = NodePath("../world/playerSpawner")

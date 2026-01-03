@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bafanrvhgunmk"]
+
+[ext_resource type="Script" uid="uid://dvvsaq2veqypu" path="res://player/player.gd" id="1_oul6g"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oul6g"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sh265"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
+height = 2.5
+
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
+script = ExtResource("1_oul6g")
+camera = NodePath("Camera3D")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_oul6g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_sh265")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.89752793, 0.44095767, 0, -0.44095767, 0.89752793, 0, 1.4456761, 1.7980573)
+current = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.021872878, 0)
+shape = SubResource("CapsuleShape3D_oul6g")

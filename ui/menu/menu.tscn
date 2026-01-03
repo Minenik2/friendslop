@@ -90,6 +90,7 @@ stretch_mode = 6
 [node name="copyPID" type="Button" parent="."]
 unique_name_in_owner = true
 visible = false
+focus_mode = 0
 text = "copy code"
 
 [connection signal="pressed" from="mainMenuALL/connectToJoin/connect" to="." method="_on_connect_pressed"]
