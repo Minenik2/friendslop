@@ -22,6 +22,10 @@ func _on_connect_pressed() -> void:
 	
 	NetworkManager.join_game(%code.text)
 	%mainMenuALL.hide()
+	
+	# a connecting screen will appear once the player is spawned it will hide the screen
+	DeathScreen.changeText("Connecting")
+	DeathScreen.show()
 	HudUi.show()
 
 # show the connect to host menu

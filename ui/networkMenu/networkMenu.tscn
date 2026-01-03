@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://ctkv5ww1gkgi8"]
 
-[ext_resource type="Script" uid="uid://d3b8oy6ht6ne2" path="res://networking/networkUI.gd" id="1_v6ljw"]
-[ext_resource type="Texture2D" uid="uid://btx4yc1iei4tb" path="res://art/Screenshot_2.png" id="2_77h3e"]
+[ext_resource type="Script" uid="uid://d3b8oy6ht6ne2" path="res://networking/networkUI.gd" id="1_g82x3"]
+[ext_resource type="Texture2D" uid="uid://btx4yc1iei4tb" path="res://art/Screenshot_2.png" id="2_qw6cj"]
 
-[node name="menu" type="CanvasLayer"]
-script = ExtResource("1_v6ljw")
+[node name="networkMenu" type="CanvasLayer"]
+script = ExtResource("1_g82x3")
 
 [node name="mainMenuALL" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
@@ -83,7 +83,7 @@ text = "Join "
 [node name="TextureRect" type="TextureRect" parent="mainMenuALL"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_77h3e")
+texture = ExtResource("2_qw6cj")
 expand_mode = 1
 stretch_mode = 6
 

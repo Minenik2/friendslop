@@ -19,14 +19,15 @@ config/icon="res://icon.svg"
 
 Noray="*res://addons/netfox.noray/noray.gd"
 PacketHandshake="*res://addons/netfox.noray/packet-handshake.gd"
-MainMenu="*res://ui/menu/menu.tscn"
 NetworkManager="*res://networking/network_manager.tscn"
-HudUi="*res://ui/hud/hudUi.tscn"
 MouseManager="*res://player/mouseManager.gd"
 UiManager="*res://ui/uiManager/uiManager.gd"
 GameSettingManager="*res://ui/pause_menu/gameSettingManager/game_setting_manager.tscn"
 AudioManager="*res://audio/audioManager/audio_manager.tscn"
+MainMenu="*res://ui/networkMenu/networkMenu.tscn"
+HudUi="*res://ui/hud/hudUi.tscn"
 PauseMenu="*res://ui/pause_menu/pause_menu.tscn"
+DeathScreen="*res://ui/deathScreen/death_screen.tscn"
 
 [display]
 
@@ -75,6 +76,11 @@ jump={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":32,"key_label":0,"unicode":32,"location":0,"echo":false,"script":null)
 ]
 }
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+3d/default_gravity=20.0
 
 [rendering]
 

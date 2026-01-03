@@ -19,6 +19,7 @@ func _enter_tree() -> void:
 		set_physics_process(false)
 		set_process_input(false)
 	else:
+		DeathScreen.hide()
 		camera.current = true
 		MouseManager.try_hide_mouse()
 
