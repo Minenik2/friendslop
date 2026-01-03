@@ -13,7 +13,7 @@ func _on_host_pressed() -> void:
 	AudioManager.playMenuClick()
 	
 	NetworkManager.start_host()
-	%mainMenuALL.hide()
+	hide()
 	HudUi.show()
 	hostPressed.emit()
 
@@ -21,7 +21,7 @@ func _on_connect_pressed() -> void:
 	AudioManager.playMenuClick()
 	
 	NetworkManager.join_game(%code.text)
-	%mainMenuALL.hide()
+	hide()
 	
 	# a connecting screen will appear once the player is spawned it will hide the screen
 	DeathScreen.changeText("Connecting")

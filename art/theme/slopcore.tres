@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://b0yv7sg6b2cgc"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://b0yv7sg6b2cgc"]
 
 [ext_resource type="Texture2D" uid="uid://egngy4lh52ku" path="res://art/ui/uiBox.png" id="1_qdnbu"]
+[ext_resource type="Texture2D" uid="uid://c8u07kebnvev" path="res://art/ui/crossUi.png" id="2_rm4fy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qdnbu"]
 
@@ -70,6 +71,8 @@ Button/styles/pressed = SubResource("StyleBoxTexture_f8tkf")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_f8tkf")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_gpmg5")
 HSlider/styles/slider = SubResource("StyleBoxFlat_asane")
+LineEdit/colors/clear_button_color_pressed = Color(0.64396995, 0.6341443, 7.70092e-07, 1)
+LineEdit/icons/clear = ExtResource("2_rm4fy")
 LineEdit/styles/focus = SubResource("StyleBoxTexture_gpmg5")
 LineEdit/styles/normal = SubResource("StyleBoxTexture_rm4fy")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_rm4fy")

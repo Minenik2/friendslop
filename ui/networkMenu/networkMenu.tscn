@@ -6,6 +6,14 @@
 [node name="networkMenu" type="CanvasLayer"]
 script = ExtResource("1_g82x3")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09019608, 0.078431375, 0.10980392, 1)
+
 [node name="mainMenuALL" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
 anchors_preset = 15
@@ -62,6 +70,7 @@ size_flags_horizontal = 3
 [node name="SLOPCORElogo" type="Label" parent="mainMenuALL/mainmenu"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.6509804, 0.57254905, 0.6901961, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 5
 theme_override_constants/shadow_offset_y = 2
@@ -81,6 +90,7 @@ theme_override_font_sizes/font_size = 32
 text = "Join "
 
 [node name="TextureRect" type="TextureRect" parent="mainMenuALL"]
+modulate = Color(0.6509804, 0.57254905, 0.6901961, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("2_qw6cj")
