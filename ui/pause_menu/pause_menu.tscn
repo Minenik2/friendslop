@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://crqga2nu87elo"]
+
+[ext_resource type="Script" uid="uid://cs2tyfx40e4b0" path="res://ui/pause_menu/settingsMenu.gd" id="1_5hbt6"]
+
+[node name="pauseMenu" type="CanvasLayer"]
+script = ExtResource("1_5hbt6")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -88.0
+offset_right = 148.0
+offset_bottom = 88.0
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="Label3" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "P A U S E"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="SensitivityLabel" type="Label" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Mouse  Sensitivity"
+
+[node name="SensitivitySlider" type="HSlider" parent="VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+
+[node name="VolumeLabel" type="Label" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+
+[node name="inventory" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_constants/outline_size = 6
+text = "I n v e n t o r y"
+
+[node name="collection" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_constants/outline_size = 6
+text = "C o l l e c t i o n"
+
+[node name="copyPID" type="Button" parent="VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+text = "copy code"
+
+[node name="Back" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+theme_override_constants/outline_size = 6
+text = "B a c k"
+
+[connection signal="pressed" from="VBoxContainer2/inventory" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="VBoxContainer2/collection" to="." method="_on_collection_pressed"]
+[connection signal="pressed" from="VBoxContainer2/copyPID" to="." method="_on_copy_pid_pressed"]
+[connection signal="pressed" from="VBoxContainer2/Back" to="." method="_on_back_pressed"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx4o2vlk7ldgx"]
+
+[ext_resource type="Script" uid="uid://bbxcav5if0hsi" path="res://pause_menu/gameSettings.gd" id="1_i3d6n"]
+
+[node name="gameSettingManager" type="Node"]
+script = ExtResource("1_i3d6n")

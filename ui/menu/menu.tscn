@@ -87,14 +87,7 @@ texture = ExtResource("2_77h3e")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="copyPID" type="Button" parent="."]
-unique_name_in_owner = true
-visible = false
-focus_mode = 0
-text = "copy code"
-
 [connection signal="pressed" from="mainMenuALL/connectToJoin/connect" to="." method="_on_connect_pressed"]
 [connection signal="pressed" from="mainMenuALL/connectToJoin/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="mainMenuALL/mainmenu/host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="mainMenuALL/mainmenu/join" to="." method="_on_join_pressed"]
-[connection signal="pressed" from="copyPID" to="." method="_on_copy_pid_pressed"]

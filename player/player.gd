@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @export var speed := 5.0
+@export var jump_velocity: float = 7
 @export var camera: Camera3D
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -19,12 +20,13 @@ func _enter_tree() -> void:
 		set_process_input(false)
 	else:
 		camera.current = true
+		MouseManager.try_hide_mouse()
 
 func _unhandled_input(event):
 	# Mouse look (only when captured)
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		rotate_y(-event.relative.x * 0.004) # TODO change 0.004 to be adjusted in game setting
-		pitch = clamp(pitch - event.relative.y * 0.004, -PI/2, PI/2)
+		rotate_y(-event.relative.x * GameSettingManager.mouse_sensitivity)
+		pitch = clamp(pitch - event.relative.y * GameSettingManager.mouse_sensitivity, -PI/2, PI/2)
 		camera.rotation.x = pitch
 
 func _physics_process(delta):
@@ -44,6 +46,10 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
+	
+	# Jump
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = jump_velocity
 
 
 	self.velocity = velocity

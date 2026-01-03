@@ -11,6 +11,7 @@ func _ready():
 func _on_host_pressed():
 	print("spawning host player")
 	_spawn_player(1)
+	MouseManager.try_hide_mouse()
 
 func _on_peer_connected(peer_id : int):
 	if not multiplayer.is_server():

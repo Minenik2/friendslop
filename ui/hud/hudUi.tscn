@@ -26,9 +26,11 @@ bbcode_enabled = true
 [node name="messageinput" type="LineEdit" parent="chatUI/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_mode = 0
 clear_button_enabled = true
 
 [node name="send" type="Button" parent="chatUI/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+focus_mode = 0
 text = "Send"

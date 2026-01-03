@@ -8,28 +8,31 @@ var current_pid : String = ""
 
 func _ready():
 	noray_component.createdOID.connect(_on_pid_created)
-	%copyPID.disabled = true
 
 func _on_host_pressed() -> void:
+	AudioManager.playMenuClick()
+	
 	NetworkManager.start_host()
 	%mainMenuALL.hide()
-	%copyPID.show()
 	HudUi.show()
 	hostPressed.emit()
 
 func _on_connect_pressed() -> void:
+	AudioManager.playMenuClick()
+	
 	NetworkManager.join_game(%code.text)
 	%mainMenuALL.hide()
 	HudUi.show()
 
 # show the connect to host menu
 func _on_join_pressed() -> void:
+	AudioManager.playMenuClick()
+	
 	%mainmenu.hide()
 	%connectToJoin.show()
 
 func _on_pid_created(pid: String):
 	current_pid = pid
-	%copyPID.disabled = false
 
 func _on_copy_pid_pressed() -> void:
 	if current_pid.is_empty():
@@ -40,5 +43,7 @@ func _on_copy_pid_pressed() -> void:
 
 # back from connect to host menu
 func _on_back_pressed() -> void:
+	AudioManager.playMenuClick()
+	
 	%connectToJoin.hide()
 	%mainmenu.show()

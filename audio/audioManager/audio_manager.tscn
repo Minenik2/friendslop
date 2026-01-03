@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://nng8xjwuo33y"]
+
+[ext_resource type="Script" uid="uid://ciasf0sdjnpmv" path="res://audio/audioManager/audio_manager.gd" id="1_vwd0j"]
+[ext_resource type="AudioStream" uid="uid://cu4q87m0ymchd" path="res://audio/ture.wav" id="2_dpd6d"]
+[ext_resource type="AudioStream" uid="uid://bhj4fiin8wyf0" path="res://audio/audio_steps.wav" id="3_6jt24"]
+
+[node name="AudioManager" type="AudioStreamPlayer" node_paths=PackedStringArray("music_player")]
+volume_db = -30.0
+script = ExtResource("1_vwd0j")
+music_player = NodePath(".")
+songs = Array[AudioStream]([ExtResource("2_dpd6d")])
+
+[node name="steps" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6jt24")
+volume_db = -20.0
+pitch_scale = 0.9
+
+[node name="land" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0
+pitch_scale = 0.8
+
+[node name="menuClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6jt24")
+volume_db = -20.0
+pitch_scale = 2.0
+
+[node name="menuHover" type="AudioStreamPlayer" parent="."]
+volume_db = -28.0
+pitch_scale = 3.0
+
+[node name="death" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+pitch_scale = 0.15
+
+[node name="dialogueTalk" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0
+pitch_scale = 1.2
+
+[node name="dialogueClick" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+pitch_scale = 1.6
+
+[node name="fishing" type="Node" parent="."]
+
+[node name="hookCatch" type="AudioStreamPlayer" parent="fishing"]
+volume_db = -10.0
+pitch_scale = 1.9
+
+[node name="bite" type="AudioStreamPlayer" parent="fishing"]
+volume_db = -10.0
+pitch_scale = 1.2
+
+[node name="fishLoot" type="Node" parent="."]
+
+[node name="pickUpCommon" type="AudioStreamPlayer" parent="fishLoot"]
+volume_db = -7.0
+pitch_scale = 2.1
+
+[node name="pickUpRare" type="AudioStreamPlayer" parent="fishLoot"]
+pitch_scale = 2.1
+
+[node name="pickUpLegendary" type="AudioStreamPlayer" parent="fishLoot"]
+volume_db = -10.0
+
+[node name="dropLegendary" type="AudioStreamPlayer" parent="fishLoot"]
+volume_db = -10.0
+pitch_scale = 0.86
+
+[node name="dropRare" type="AudioStreamPlayer" parent="fishLoot"]
+pitch_scale = 1.4
+
+[node name="dropCommon" type="AudioStreamPlayer" parent="fishLoot"]
+volume_db = -7.0
+pitch_scale = 1.3
+
+[node name="shop" type="Node" parent="."]
+
+[node name="sell" type="AudioStreamPlayer" parent="shop"]
+volume_db = -10.0

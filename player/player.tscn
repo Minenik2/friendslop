@@ -23,7 +23,7 @@ replication_config = SubResource("SceneReplicationConfig_oul6g")
 mesh = SubResource("CylinderMesh_sh265")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.89752793, 0.44095767, 0, -0.44095767, 0.89752793, 0, 1.4456761, 1.7980573)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75301945, 0)
 current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
