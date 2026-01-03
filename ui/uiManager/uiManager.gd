@@ -16,4 +16,5 @@ func closeUi(uiObj):
 
 func closeAllUi():
 	for ui in uiArray:
-		uiArray.pop_back().hide()
+		uiArray.pop_back()._toggle_menu(false)
+		#uiArray.pop_back().hide()

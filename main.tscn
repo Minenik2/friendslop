@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://bafanrvhgunmk" path="res://player/player.tscn" id="2_h2yge"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7dm0k"]
-size = Vector2(10, 10)
+size = Vector2(20, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
-size = Vector3(10.057495, 0.477417, 10.099304)
+size = Vector3(20, 0.477, 20)
 
 [sub_resource type="Environment" id="Environment_0xm2m"]
 fog_enabled = true

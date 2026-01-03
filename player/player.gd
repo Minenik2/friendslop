@@ -7,6 +7,8 @@ extends CharacterBody3D
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var pitch: float = 0.0  # Up/down rotation
 var player_id: int # for multiplayer
+
+var direction: Vector3
 	
 func _enter_tree() -> void:
 	
@@ -39,7 +41,7 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 
 	var input_dir = Input.get_vector("left", "right", "up", "down")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	if direction != Vector3.ZERO:
 		velocity.x = direction.x * speed

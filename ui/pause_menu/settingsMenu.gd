@@ -39,14 +39,16 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("tabmenu"):
 		_toggle_menu()
 
-func _toggle_menu():
-	AudioManager.playMenuClick()
+func _toggle_menu(playAudio: bool = true):
+	if playAudio:
+		AudioManager.playMenuClick()
 	menu_visible = !menu_visible
 	visible = menu_visible
 	
 	# Control mouse capture
 	if menu_visible:
 		MouseManager.show_mouse()
+		UiManager.closeAllUi()
 		UiManager.addUi(self)
 	else:
 		MouseManager.hide_mouse()

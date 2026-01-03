@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bafanrvhgunmk"]
+[gd_scene load_steps=7 format=3 uid="uid://bafanrvhgunmk"]
 
 [ext_resource type="Script" uid="uid://dvvsaq2veqypu" path="res://player/player.gd" id="1_oul6g"]
+[ext_resource type="AudioStream" uid="uid://bhj4fiin8wyf0" path="res://audio/audio_steps.wav" id="2_rkbax"]
+[ext_resource type="Script" uid="uid://bupwufohhkbuq" path="res://player/footsteps_component.gd" id="3_g1dw6"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oul6g"]
 properties/0/path = NodePath(".:position")
@@ -29,3 +31,17 @@ current = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.021872878, 0)
 shape = SubResource("CapsuleShape3D_oul6g")
+
+[node name="footstepsComponent" type="Node3D" parent="."]
+script = ExtResource("3_g1dw6")
+
+[node name="footsteps" type="AudioStreamPlayer3D" parent="footstepsComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35020828, 0)
+stream = ExtResource("2_rkbax")
+volume_db = -30.0
+pitch_scale = 0.9
+
+[node name="land" type="AudioStreamPlayer3D" parent="footstepsComponent"]
+stream = ExtResource("2_rkbax")
+volume_db = -30.0
+pitch_scale = 0.8
