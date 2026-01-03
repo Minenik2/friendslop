@@ -43,7 +43,7 @@ func _unhandled_input(event):
 		camera.rotation.x = pitch
 
 func _physics_process(delta):
-	if not is_multiplayer_authority():
+	if not is_multiplayer_authority() or !UiManager.uiArray.is_empty():
 		return
 	
 	var input_dir = Input.get_vector("left", "right", "up", "down")
