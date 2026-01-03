@@ -18,6 +18,7 @@ func _physics_process(delta):
 	
 	if player.direction != Vector3.ZERO and step_timer <= 0.0 and player.is_on_floor() and !$land.playing:
 		$footsteps.play()
+		rpc("rpc_play_footstep") # share to other clients
 		step_timer = step_interval
 	
 	# Landing sound check
@@ -26,3 +27,9 @@ func _physics_process(delta):
 
 	# Update last floor state
 	was_on_floor = player.is_on_floor()
+
+@rpc("any_peer", "call_local", "unreliable")
+func rpc_play_footstep():
+	#if $footsteps.playing:
+	#	return
+	$footsteps.play()
