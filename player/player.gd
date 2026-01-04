@@ -9,7 +9,8 @@ enum STATE {
 	IDLE,
 	WALKING,
 	JUMP,
-	FALL
+	FALL,
+	INMENU
 }
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -43,7 +44,7 @@ func _unhandled_input(event):
 		camera.rotation.x = pitch
 
 func _physics_process(delta):
-	if not is_multiplayer_authority() or !UiManager.uiArray.is_empty():
+	if not is_multiplayer_authority():
 		return
 	
 	var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -80,14 +81,23 @@ func _physics_process(delta):
 			
 			if is_on_floor():
 				switch_state(STATE.IDLE) # To IDLE 
+		STATE.INMENU:
+			velocity.y -= gravity * delta
+			velocity.x = move_toward(velocity.x, 0, speed)
+			velocity.z = move_toward(velocity.z, 0, speed)
+			if UiManager.uiArray.is_empty():
+				switch_state(STATE.IDLE)
 	
+	# at any point if player opens menu, change to inmenu state
+	if !UiManager.uiArray.is_empty():
+		switch_state(STATE.INMENU)
 	
 	move_and_slide()
 
 func switch_state(to_state: STATE) -> void:
 	active_state = to_state
 	
-	match  active_state:
+	match active_state:
 		STATE.IDLE:
 			pass
 		STATE.JUMP:

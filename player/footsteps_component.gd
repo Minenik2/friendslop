@@ -1,5 +1,5 @@
 extends Node3D
-@onready var player: CharacterBody3D = $".."
+@onready var player: playerMain = $".."
 
 # audio for footsteps
 var step_timer := 0.0
@@ -16,7 +16,7 @@ func _ready():
 func _physics_process(delta):
 	step_timer -= delta # step sound
 	
-	if player.direction != Vector3.ZERO and step_timer <= 0.0 and player.is_on_floor() and !$land.playing:
+	if player.direction != Vector3.ZERO and step_timer <= 0.0 and player.active_state == playerMain.STATE.WALKING and !$land.playing:
 		#$footsteps.play()
 		rpc("rpc_play_footstep") # share to other clients
 		step_timer = step_interval
