@@ -21,6 +21,8 @@ func _on_peer_connected(peer_id : int):
 
 func _spawn_player(peer_id : int):
 	var player := player_scene.instantiate()
+	# connect spawn player signal
+	player.get_node("playerDeathComponent").connect("respawn", _on_killzone_respawn)
 	player.player_id = peer_id
 	player.name = "Player_%d" % peer_id
 	player.set_multiplayer_authority(peer_id)

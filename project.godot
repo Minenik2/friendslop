@@ -21,7 +21,7 @@ config/icon="res://icon.svg"
 Noray="*res://addons/netfox.noray/noray.gd"
 PacketHandshake="*res://addons/netfox.noray/packet-handshake.gd"
 NetworkManager="*res://networking/network_manager.tscn"
-MouseManager="*res://player/mouseManager.gd"
+MouseManager="*res://entities/player/mouseManager.gd"
 UiManager="*res://ui/uiManager/uiManager.gd"
 GameSettingManager="*res://ui/pause_menu/gameSettingManager/game_setting_manager.tscn"
 AudioManager="*res://audio/audioManager/audio_manager.tscn"
@@ -45,9 +45,11 @@ enabled=PackedStringArray("res://addons/netfox.internals/plugin.cfg", "res://add
 folder_colors={
 "res://art/": "red",
 "res://audio/": "red",
+"res://entities/": "purple",
+"res://entities/player/": "purple",
 "res://killzone/": "purple",
 "res://networking/": "purple",
-"res://player/": "purple",
+"res://stats/": "purple",
 "res://ui/": "green"
 }
 
@@ -99,6 +101,8 @@ chat={
 
 3d_physics/layer_1="world"
 3d_physics/layer_2="player"
+3d_physics/layer_3="enemy_attack"
+3d_physics/layer_4="player_attack"
 
 [physics]
 

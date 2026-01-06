@@ -1,0 +1,85 @@
+[gd_scene load_steps=13 format=3 uid="uid://bafanrvhgunmk"]
+
+[ext_resource type="Script" uid="uid://dvvsaq2veqypu" path="res://entities/player/player.gd" id="1_oul6g"]
+[ext_resource type="AudioStream" uid="uid://bhj4fiin8wyf0" path="res://audio/audio_steps.wav" id="2_rkbax"]
+[ext_resource type="Script" uid="uid://bupwufohhkbuq" path="res://entities/player/components/footsteps_component.gd" id="3_g1dw6"]
+[ext_resource type="Script" uid="uid://bvbenfc1wyqg6" path="res://entities/player/components/headbob_component.gd" id="4_yw30f"]
+[ext_resource type="Script" uid="uid://bumircjejjqi5" path="res://entities/player/components/stat_component.gd" id="5_fkugw"]
+[ext_resource type="Resource" uid="uid://bddyccxsgwmrx" path="res://stats/playerStats.tres" id="6_qiwj3"]
+[ext_resource type="Script" uid="uid://kufxj2qayes1" path="res://entities/player/components/hitboxComponent.gd" id="7_26q78"]
+[ext_resource type="Script" uid="uid://b2mnx22oebjl" path="res://entities/player/components/playerDeath_component.gd" id="8_26q78"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_oul6g"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sh265"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
+height = 2.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_26q78"]
+height = 2.5
+
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
+collision_layer = 3
+script = ExtResource("1_oul6g")
+camera = NodePath("camerapivot/Camera3D")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_oul6g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_sh265")
+
+[node name="camerapivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="camerapivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75301945, 0)
+current = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.021872878, 0)
+shape = SubResource("CapsuleShape3D_oul6g")
+
+[node name="footstepsComponent" type="Node3D" parent="."]
+script = ExtResource("3_g1dw6")
+
+[node name="footsteps" type="AudioStreamPlayer3D" parent="footstepsComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35020828, 0)
+stream = ExtResource("2_rkbax")
+volume_db = -30.0
+pitch_scale = 0.9
+
+[node name="land" type="AudioStreamPlayer3D" parent="footstepsComponent"]
+stream = ExtResource("2_rkbax")
+volume_db = -30.0
+pitch_scale = 0.8
+
+[node name="headbobComponent" type="Node3D" parent="." node_paths=PackedStringArray("camera_pivot")]
+script = ExtResource("4_yw30f")
+camera_pivot = NodePath("../camerapivot")
+
+[node name="statComponent" type="Node3D" parent="."]
+script = ExtResource("5_fkugw")
+characterSheet = ExtResource("6_qiwj3")
+
+[node name="hitboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("stat_component")]
+collision_layer = 0
+collision_mask = 12
+script = ExtResource("7_26q78")
+stat_component = NodePath("../statComponent")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitboxComponent"]
+shape = SubResource("CapsuleShape3D_26q78")
+debug_color = Color(0.4, 0.48235294, 0.11764706, 0.70980394)
+
+[node name="playerDeathComponent" type="Node3D" parent="."]
+script = ExtResource("8_26q78")
+
+[node name="Timer" type="Timer" parent="playerDeathComponent"]
+wait_time = 3.0
+
+[connection signal="characterDied" from="statComponent" to="playerDeathComponent" method="_on_stat_component_character_died"]
+[connection signal="timeout" from="playerDeathComponent/Timer" to="playerDeathComponent" method="_on_timer_timeout"]

@@ -3,7 +3,7 @@ extends Label
 var shake_amount: float = 1.0
 var shaking: bool = true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if shaking:
 		# Random small offset
 		position.x = randf_range(-shake_amount, shake_amount)
