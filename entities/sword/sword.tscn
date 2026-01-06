@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://btkckbv6ym2si"]
+
+[ext_resource type="PackedScene" uid="uid://ded0jpp3gjels" path="res://art/meshes/sword/sword.fbx" id="1_x2rbu"]
+
+[node name="sword" type="Node3D"]
+
+[node name="sword" parent="." instance=ExtResource("1_x2rbu")]
