@@ -38,7 +38,7 @@ mouse_cursor/custom_image="uid://msh6kygj1g13"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/netfox.internals/plugin.cfg", "res://addons/netfox.noray/plugin.cfg")
+enabled=PackedStringArray("res://addons/MarchingSquaresTerrain/plugin.cfg", "res://addons/netfox.internals/plugin.cfg", "res://addons/netfox.noray/plugin.cfg")
 
 [file_customization]
 
@@ -47,6 +47,7 @@ folder_colors={
 "res://audio/": "red",
 "res://entities/": "purple",
 "res://entities/player/": "purple",
+"res://enviroment/": "purple",
 "res://killzone/": "purple",
 "res://networking/": "purple",
 "res://stats/": "purple",
