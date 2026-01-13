@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://40fqw8fdm1j3"]
+[gd_scene load_steps=9 format=3 uid="uid://40fqw8fdm1j3"]
 
 [ext_resource type="Script" uid="uid://dymouvp3ikql3" path="res://entities/player/player_spawner.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bafanrvhgunmk" path="res://entities/player/player.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://khbyt38hlpcl" path="res://killzone/killzone.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bfam51af6wq1l" path="res://enviroment/terrain.tscn" id="4_1bvp3"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7dm0k"]
 size = Vector2(20, 20)
@@ -25,12 +26,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1102735, 0)
 script = ExtResource("1_0xm2m")
 player_scene = ExtResource("2_h2yge")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="world"]
+[node name="platform" type="MeshInstance3D" parent="world"]
+visible = false
 mesh = SubResource("PlaneMesh_7dm0k")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="world/MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="world/platform"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="world/MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="world/platform/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017028809, -0.2612915, 0.00289917)
 shape = SubResource("BoxShape3D_0xm2m")
 
@@ -47,5 +49,8 @@ environment = SubResource("Environment_0xm2m")
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("uid://bafanrvhgunmk")
 spawn_path = NodePath("../world/playerSpawner")
+
+[node name="terrain" parent="." instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.32209587, 0)
 
 [connection signal="respawn" from="world/killzone" to="world/playerSpawner" method="_on_killzone_respawn"]
