@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://40fqw8fdm1j3"]
+[gd_scene load_steps=10 format=3 uid="uid://40fqw8fdm1j3"]
 
 [ext_resource type="Script" uid="uid://dymouvp3ikql3" path="res://entities/player/player_spawner.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bafanrvhgunmk" path="res://entities/player/player.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://khbyt38hlpcl" path="res://killzone/killzone.tscn" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://bfam51af6wq1l" path="res://enviroment/terrain.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bfam51af6wq1l" path="res://enviroment/terrain01.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://c30ts5pouv1k0" path="res://entities/enemy/enemy.tscn" id="5_lquwl"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7dm0k"]
 size = Vector2(20, 20)
@@ -52,5 +53,8 @@ spawn_path = NodePath("../world/playerSpawner")
 
 [node name="terrain" parent="." instance=ExtResource("4_1bvp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.32209587, 0)
+
+[node name="enemy" parent="." instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.815587, 1.3319843, -8.995393)
 
 [connection signal="respawn" from="world/killzone" to="world/playerSpawner" method="_on_killzone_respawn"]

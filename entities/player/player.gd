@@ -10,7 +10,8 @@ enum STATE {
 	WALKING,
 	JUMP,
 	FALL,
-	INMENU
+	INMENU,
+	KNOCKED
 }
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -35,10 +36,11 @@ func _enter_tree() -> void:
 		DeathScreen.hide()
 		camera.current = true
 		MouseManager.try_hide_mouse()
+		PlayerManager.currentPlayer = self
 
 func _unhandled_input(event):
 	# Mouse look (only when captured)
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and is_multiplayer_authority():
 		rotate_y(-event.relative.x * GameSettingManager.mouse_sensitivity)
 		pitch = clamp(pitch - event.relative.y * GameSettingManager.mouse_sensitivity, -PI/2, PI/2)
 		camera.rotation.x = pitch
@@ -76,7 +78,7 @@ func _physics_process(delta):
 		STATE.FALL:
 			velocity.y -= gravity * delta
 			if direction != Vector3.ZERO:
-				velocity.x = direction.x * speed
+				velocity.x = direction.x * speed 
 				velocity.z = direction.z * speed
 			
 			if is_on_floor():
@@ -87,13 +89,23 @@ func _physics_process(delta):
 			velocity.z = move_toward(velocity.z, 0, speed)
 			if UiManager.uiArray.is_empty():
 				switch_state(STATE.IDLE)
+		STATE.KNOCKED:
+			velocity.y -= gravity * delta
+			# Horizontal friction
+			var horizontal := Vector3(velocity.x, 0, velocity.z)
+
+			if is_on_floor():
+				horizontal = horizontal.move_toward(Vector3.ZERO, 20 * delta)
+			else:
+				horizontal = horizontal.move_toward(Vector3.ZERO, 1 * delta)
 	
 	# at any point if player opens menu, change to inmenu state
-	if !UiManager.uiArray.is_empty():
+	if !UiManager.uiArray.is_empty() and !STATE.KNOCKED:
 		switch_state(STATE.INMENU)
 	
 	move_and_slide()
 
+# logic for running something when switching states
 func switch_state(to_state: STATE) -> void:
 	active_state = to_state
 	

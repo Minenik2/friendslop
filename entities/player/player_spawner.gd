@@ -7,6 +7,7 @@ func _ready():
 	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	MainMenu.hostPressed.connect(_on_host_pressed)
+	SignalBus.playerRespawn.connect(_on_killzone_respawn)
 
 func _on_host_pressed():
 	print("spawning host player")
@@ -22,7 +23,7 @@ func _on_peer_connected(peer_id : int):
 func _spawn_player(peer_id : int):
 	var player := player_scene.instantiate()
 	# connect spawn player signal
-	player.get_node("playerDeathComponent").connect("respawn", _on_killzone_respawn)
+	#player.get_node("playerDeathComponent").connect("respawn", _on_killzone_respawn)
 	player.player_id = peer_id
 	player.name = "Player_%d" % peer_id
 	player.set_multiplayer_authority(peer_id)
